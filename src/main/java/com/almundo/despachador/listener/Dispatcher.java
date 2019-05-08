@@ -41,7 +41,7 @@ public class Dispatcher {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	
-	@JmsListener(destination="jms/almundo/queueDispatcher")
+	@JmsListener(destination = Constante.nombreColaDispatcher)
 	public void onMessage( final Message msgLlamadaIn ) throws JMSException {
 		
 		System.out.println("Llamada en Dispatcher: ");

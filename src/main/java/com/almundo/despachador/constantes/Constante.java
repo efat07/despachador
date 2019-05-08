@@ -7,6 +7,8 @@ package com.almundo.despachador.constantes;
 
 public class Constante {
 
+	public final static String nombreColaDispatcher = "jms/almundo/queueDispatcher";
+	
 	public final static String nombreColaOperador   = "jms/almundo/queueOperador";
 	public final static String nombreColaSupervisor = "jms/almundo/queueSupervisor";
 	public final static String nombreColaDirector   = "jms/almundo/queueDirector";
