@@ -56,22 +56,28 @@ public class Dispatcher {
 		try {
 			operadorResponse = mapper.readValue(llamarServicio(Constante.urlOperador), OperadorResponse.class);
 			if (operadorResponse.getDuracionAtendiendo() == 0 && operadorResponse.getCantidadEnCola() == 0){
+				System.out.println("La anterior Llamada del Cliente se despacha a Operador.");
 				enviarMensajeALaCola(Constante.nombreColaOperador,msgLlamada);
 			}else {
 				supervisorResponse = mapper.readValue(llamarServicio(Constante.urlSupervisor), SupervisorResponse.class);
 				if (supervisorResponse.getDuracionAtendiendo() == 0 && supervisorResponse.getCantidadEnCola() == 0){
+					System.out.println("La anterior Llamada del Cliente se despacha a Supervisor.");
 					enviarMensajeALaCola(Constante.nombreColaSupervisor,msgLlamada);
 				}else {
 					directorResponse = mapper.readValue(llamarServicio(Constante.urlDirector), DirectorResponse.class);
 					if(directorResponse.getDuracionAtendiendo() == 0 && directorResponse.getCantidadEnCola() == 0){
+						System.out.println("La anterior Llamada del Cliente se despacha a Director.");
 						enviarMensajeALaCola(Constante.nombreColaDirector,msgLlamada);
 					}else {
 						if(operadorResponse.getCantidadEnCola() <= supervisorResponse.getCantidadEnCola()) {
+							System.out.println("La anterior Llamada del Cliente se despacha a Operador.");
 							enviarMensajeALaCola(Constante.nombreColaOperador,msgLlamada);
 						}else {
 							if(supervisorResponse.getCantidadEnCola() <= directorResponse.getCantidadEnCola()) {
+								System.out.println("La anterior Llamada del Cliente se despacha a Supervisor.");
 								enviarMensajeALaCola(Constante.nombreColaSupervisor,msgLlamada);
 							}else {
+								System.out.println("La anterior Llamada del Cliente se despacha a Director.");
 								enviarMensajeALaCola(Constante.nombreColaDirector,msgLlamada);
 							}
 						}
